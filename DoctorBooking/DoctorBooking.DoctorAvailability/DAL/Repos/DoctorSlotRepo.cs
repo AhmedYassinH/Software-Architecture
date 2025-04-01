@@ -26,9 +26,16 @@ namespace DoctorBooking.DoctorAvailability.DAL.Repos
             _context.SaveChanges();
         }
 
-        public void ReserveSlot(DoctorSlotEntity slot)
+        public bool isSlotReserved(Guid slotId)
         {
-            var slotToReserve = _context.DoctorSlots.Find(slot.Id);
+            var slot = _context.DoctorSlots.Find(slotId);
+            return slot.IsReserved ? true : false;
+
+        }
+
+        public void ReserveSlot(Guid slotId)
+        {
+            var slotToReserve = _context.DoctorSlots.Find(slotId);
             if (slotToReserve != null && !slotToReserve.IsReserved)
             {
                 slotToReserve.IsReserved = true;
@@ -41,7 +48,6 @@ namespace DoctorBooking.DoctorAvailability.DAL.Repos
                 throw new Exception("Slot is already reserved");
             }
         }
-
 
 
     }
