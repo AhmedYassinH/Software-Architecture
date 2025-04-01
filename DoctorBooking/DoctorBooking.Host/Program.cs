@@ -10,9 +10,8 @@ builder.Services.AddSingleton<IEventBus, EventBus>();
 builder.Services.AddModules();
 
 
+
 var app = builder.Build();
-
-
 
 app.UseHttpsRedirection();
 
@@ -23,5 +22,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapModuleEndpoints();
+app.MapGet("/", () => "Modular Monolith listening");
 app.Run();
 
