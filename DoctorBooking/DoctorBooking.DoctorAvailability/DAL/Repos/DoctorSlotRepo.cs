@@ -2,6 +2,7 @@
 
 using DoctorBooking.DoctorAvailability.DAL.EFStructures;
 using DoctorBooking.DoctorAvailability.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DoctorBooking.DoctorAvailability.DAL.Repos
 {
@@ -15,31 +16,32 @@ namespace DoctorBooking.DoctorAvailability.DAL.Repos
 
 
 
-        public List<DoctorSlotEntity> GetAllSlots()
+        public async Task<List<DoctorSlotEntity>> GetAllSlotsAsync()
         {
-            return _context.DoctorSlots.ToList();
+            var list =  await _context.DoctorSlots.ToListAsync();
+            return list;
         }
 
-        public void AddSlot(DoctorSlotEntity slot)
+        public async Task AddSlotAsync(DoctorSlotEntity slot)
         {
-            _context.DoctorSlots.Add(slot);
-            _context.SaveChanges();
+            await _context.DoctorSlots.AddAsync(slot);
+            await _context.SaveChangesAsync();
         }
 
-        public bool isSlotReserved(Guid slotId)
+        public async Task<bool> isSlotReservedAsync(Guid slotId)
         {
-            var slot = _context.DoctorSlots.Find(slotId);
+            var slot = await _context.DoctorSlots.FindAsync(slotId);
             return slot.IsReserved ? true : false;
 
         }
 
-        public void ReserveSlot(Guid slotId)
+        public async Task ReserveSlotAsync(Guid slotId)
         {
-            var slotToReserve = _context.DoctorSlots.Find(slotId);
+            var slotToReserve = await _context.DoctorSlots.FindAsync(slotId);
             if (slotToReserve != null && !slotToReserve.IsReserved)
             {
                 slotToReserve.IsReserved = true;
-                _context.SaveChanges();
+               await _context.SaveChangesAsync();
                 return;
 
             }
