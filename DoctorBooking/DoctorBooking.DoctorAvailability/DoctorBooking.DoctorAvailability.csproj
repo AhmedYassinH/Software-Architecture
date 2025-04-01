@@ -6,8 +6,9 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
+
 	<ItemGroup>
-		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	  <ProjectReference Include="..\DoctorBooking.Shared\DoctorBooking.Shared.csproj" />
 	</ItemGroup>
 
 </Project>
