@@ -50,7 +50,7 @@ namespace DoctorBooking.DoctorAvailability.DAL.Initializer
         public static void InitializeData(AvailabilityDbContext context)
         {
             context.Database.EnsureCreated();
-            context.DoctorSlotEntities.AddRange(Slots);
+            context.DoctorSlots.AddRange(Slots);
             context.SaveChanges();
         }
 

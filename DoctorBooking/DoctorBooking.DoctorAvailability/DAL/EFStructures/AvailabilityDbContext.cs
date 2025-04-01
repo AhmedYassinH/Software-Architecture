@@ -10,6 +10,6 @@ namespace DoctorBooking.DoctorAvailability.DAL.EFStructures
         {
         }
 
-        public DbSet<DoctorSlotEntity> DoctorSlotEntities { get; set; }
+        public DbSet<DoctorSlotEntity> DoctorSlots { get; set; }
     }
 }
