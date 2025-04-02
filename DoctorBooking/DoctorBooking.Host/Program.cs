@@ -7,6 +7,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IEventBus, EventBus>();
+builder.Services.AddAppLogger();
+
 builder.Services.AddModules();
 
 
