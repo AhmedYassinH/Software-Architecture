@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorBooking.Shared", "Doc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorBooking.Host", "DoctorBooking.Host\DoctorBooking.Host.csproj", "{0C83FEB8-45DE-4F1D-90A2-195FDC826109}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorBooking.DoctorAvailability", "DoctorBooking.DoctorAvailability\DoctorBooking.DoctorAvailability.csproj", "{119F2644-FBD7-4146-A2BB-759072872A57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0C83FEB8-45DE-4F1D-90A2-195FDC826109}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C83FEB8-45DE-4F1D-90A2-195FDC826109}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C83FEB8-45DE-4F1D-90A2-195FDC826109}.Release|Any CPU.Build.0 = Release|Any CPU
+		{119F2644-FBD7-4146-A2BB-759072872A57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{119F2644-FBD7-4146-A2BB-759072872A57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{119F2644-FBD7-4146-A2BB-759072872A57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{119F2644-FBD7-4146-A2BB-759072872A57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

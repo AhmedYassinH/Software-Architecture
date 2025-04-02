@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DoctorBooking.DoctorAvailability\DoctorBooking.DoctorAvailability.csproj" />
     <ProjectReference Include="..\DoctorBooking.Shared\DoctorBooking.Shared.csproj" />
   </ItemGroup>
 
