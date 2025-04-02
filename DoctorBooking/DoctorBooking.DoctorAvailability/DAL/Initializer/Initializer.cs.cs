@@ -5,7 +5,7 @@ using DoctorBooking.DoctorAvailability.Models;
 
 namespace DoctorBooking.DoctorAvailability.DAL.Initializer
 {
-    public class Initializer
+    public static class Initializer
     {
         // 5 Dummy records 
         public static List<DoctorSlotEntity> Slots = new()
