@@ -16,19 +16,19 @@ namespace DoctorBooking.DoctorAvailability.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("GetAllSlots")]
         public async Task<List<DoctorSlotEntity>> GetAllSlots(DoctorSlotService service)
         {
             return await _service.GetAllSlots();
         }
 
-        [HttpPost]
+        [HttpPost("AddSlot")]
         public async Task AddSlotAsync(DoctorSlotEntity slot)
         {
             await _service.AddSlotAsync(slot);
         }
 
-        [HttpPut]
+        [HttpPut("ReserveSlot")]
         public async Task ReserveSlotAsync(Guid slotId)
         {
             await _service.ReserveSlotAsync(slotId);
