@@ -1,12 +1,20 @@
-﻿using DoctorBooking.Shared.Modules;
+﻿using DoctorBooking.DoctorAvailability;
+using DoctorBooking.Shared.Modules;
 
 namespace DoctorBooking.Host
 {
     public static class ModuleExtensions
     {
+        private static readonly List<IModule> _modules = new(){
+            new DoctorAvailabilityModule()
+        };
         public static IServiceCollection AddModules(this IServiceCollection services)
         {
-            //services.AddModule(IModule);
+            foreach (IModule module in _modules)
+            {
+                services.AddModule(module);
+
+            }
 
             return services;
         }
@@ -20,13 +28,25 @@ namespace DoctorBooking.Host
 
         public static IApplicationBuilder MapModuleEndpoints(this WebApplication app, RouteGroupBuilder? routeGroupBuilder = null)
         {
-            IEnumerable<IModule> endpoints = app.Services.GetRequiredService<IEnumerable<IModule>>();
             IEndpointRouteBuilder builder = routeGroupBuilder is null ? app : routeGroupBuilder;
 
-            foreach (IModule endpoint in endpoints)
+            foreach (IModule module in _modules)
             {
-                endpoint.MapEndpoints(builder);
+                module.MapEndpoints(builder);
             }
+
+            return app;
+        }
+
+
+        public static IApplicationBuilder InizializeModules(this WebApplication app)
+        {
+
+            foreach (IModule module in _modules)
+            {
+                module.Initialize(app);
+            }
+
 
             return app;
         }
