@@ -39,7 +39,7 @@ namespace DoctorBooking.Host
         }
 
 
-        public static IApplicationBuilder InizializeModules(this WebApplication app)
+        public static IApplicationBuilder InitializeModules(this WebApplication app)
         {
 
             foreach (IModule module in _modules)
