@@ -17,6 +17,7 @@ app.UseHttpsRedirection();
 
 if (app.Environment.IsDevelopment())
 {
+    app.InitializeModules();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
