@@ -7,7 +7,7 @@ namespace DoctorBooking.DoctorAvailability.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class DoctorSlotController
+    public class DoctorSlotController : ControllerBase
     {
         private readonly DoctorSlotService _service;
         public DoctorSlotController(DoctorSlotService service)
@@ -17,21 +17,24 @@ namespace DoctorBooking.DoctorAvailability.Controllers
 
 
         [HttpGet("GetAllSlots")]
-        public async Task<List<DoctorSlotEntity>> GetAllSlots(DoctorSlotService service)
+        public async Task<ActionResult<List<DoctorSlotEntity>>> GetAllSlots()
         {
-            return await _service.GetAllSlots();
+            var slots = await _service.GetAllSlots();
+            return Ok(slots);   
         }
 
         [HttpPost("AddSlot")]
-        public async Task AddSlotAsync(DoctorSlotEntity slot)
+        public async Task<ActionResult> AddSlotAsync(DoctorSlotEntity slot)
         {
             await _service.AddSlotAsync(slot);
+            return Ok();
         }
 
         [HttpPut("ReserveSlot")]
-        public async Task ReserveSlotAsync(Guid slotId)
+        public async Task<ActionResult> ReserveSlotAsync(Guid slotId)
         {
             await _service.ReserveSlotAsync(slotId);
+            return Ok();
         }
     }
 }
