@@ -1,6 +1,8 @@
 ﻿
+using DoctorBooking.DoctorAvailability.Contracts;
 using DoctorBooking.DoctorAvailability.Models;
 using DoctorBooking.DoctorAvailability.Services;
+using DoctorBooking.Shared.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DoctorBooking.DoctorAvailability.Controllers
@@ -24,15 +26,33 @@ namespace DoctorBooking.DoctorAvailability.Controllers
         }
 
         [HttpPost("AddSlot")]
-        public async Task<ActionResult> AddSlotAsync(DoctorSlotEntity slot)
+        public async Task<ActionResult> AddSlotAsync([FromBody] AddSlotRequest request)
         {
-            await _service.AddSlotAsync(slot);
+            if (!ModelState.IsValid)
+            {
+
+                Dictionary<string, string[]> errors = ModelState.ToDictionary(
+                    x => x.Key,
+                    x => x.Value.Errors.Select(y => y.ErrorMessage).ToArray());
+
+                throw new ValidationException(errors);
+            }
+            await _service.AddSlotAsync(request);
             return Ok();
         }
 
         [HttpPut("ReserveSlot")]
         public async Task<ActionResult> ReserveSlotAsync(Guid slotId)
         {
+            if (!ModelState.IsValid)
+            {
+
+                Dictionary<string, string[]> errors = ModelState.ToDictionary(
+                    x => x.Key,
+                    x => x.Value.Errors.Select(y => y.ErrorMessage).ToArray());
+
+                throw new ValidationException(errors);
+            }
             await _service.ReserveSlotAsync(slotId);
             return Ok();
         }
