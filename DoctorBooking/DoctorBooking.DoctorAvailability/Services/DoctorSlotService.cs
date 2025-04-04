@@ -1,4 +1,5 @@
-
+﻿
+using DoctorBooking.DoctorAvailability.Contracts;
 using DoctorBooking.DoctorAvailability.DAL.Repos;
 using DoctorBooking.DoctorAvailability.Models;
 using DoctorBooking.Host.Filters.Exceptions;
@@ -18,8 +19,23 @@ namespace DoctorBooking.DoctorAvailability.Services
             return await _repo.GetAllSlotsAsync();
         }
 
-        public async Task AddSlotAsync(DoctorSlotEntity slot)
+        public async Task AddSlotAsync(AddSlotRequest request)
         {
+            if (request.DoctorId != new Guid("a1b2c3d4-e5f6-4a5b-9c8d-1e2f3a4b5c6d"))
+            {
+                throw new NotFoundException("Invalid Doctor Id")
+                {
+                    Code = "DoctorNotFound"
+                };
+            }
+            var slot = new DoctorSlotEntity
+            {
+                Id = Guid.NewGuid(),
+                DoctorId = request.DoctorId,
+                Time = request.Time,
+                Cost = request.Cost,
+                IsReserved = false
+            };
             await _repo.AddSlotAsync(slot);
         }
 
