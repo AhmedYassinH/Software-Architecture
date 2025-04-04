@@ -2,6 +2,7 @@
 
 using DoctorBooking.DoctorAvailability.DAL.EFStructures;
 using DoctorBooking.DoctorAvailability.Models;
+using DoctorBooking.Host.Filters.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
 namespace DoctorBooking.DoctorAvailability.DAL.Repos
@@ -47,7 +48,8 @@ namespace DoctorBooking.DoctorAvailability.DAL.Repos
             }
             else
             {
-                throw new Exception("Slot is already reserved");
+                throw new ConflictException("Slot is already reserved") { Code = "SlotConflict" };
+
             }
         }
 

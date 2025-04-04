@@ -1,6 +1,7 @@
-﻿
+
 using DoctorBooking.DoctorAvailability.DAL.Repos;
 using DoctorBooking.DoctorAvailability.Models;
+using DoctorBooking.Host.Filters.Exceptions;
 
 namespace DoctorBooking.DoctorAvailability.Services
 {
@@ -30,8 +31,11 @@ namespace DoctorBooking.DoctorAvailability.Services
             {
                 await _repo.ReserveSlotAsync(slotId);
             }
-            else { throw new Exception("Slot is already reserved"); }
+            else
+            {
+                throw new ConflictException("Slot is already reserved") { Code = "SlotConflict" };
 
+            }
         }
     }
 }
